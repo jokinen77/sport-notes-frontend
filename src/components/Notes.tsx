@@ -54,6 +54,14 @@ const Notes = (props: Props) => {
 		ws.addEventListener(WebsocketEvents.message, messageEventListener);
 	}
 
+	const removeNote = (ws: Websocket|undefined, id: number) => {
+		if (ws && window.confirm("Are you sure?")) {
+			ws.send(JSON.stringify({ "token": user.token, "action": "REMOVE_NOTE", "id": Math.round(id) }))
+		} else {
+			console.log("No websocket or canceled!");
+		}
+	}
+
 	const messageEventListener = (i: Websocket, e: MessageEvent) => {
 		e.preventDefault();
 		console.log("Message:", e.data)
@@ -62,10 +70,15 @@ const Notes = (props: Props) => {
 			case 'NOTES':
 				setNotes(message.notes);
 				break;
-			case 'NOTE':
-				const newNotes = notes.concat([message.note])
-				newNotes.sort((a, b) => (a.orderno > b.orderno) ? -1 : 1)
-				setNotes(newNotes);
+			case 'ADD_NOTE':
+				const notesAdded = notes.concat([message.note])
+				notesAdded.sort((a, b) => (a.orderno > b.orderno) ? -1 : 1)
+				setNotes(notesAdded);
+				break;
+			case 'REMOVE_NOTE':
+				const id = message.id
+				const notesDeleted = notes.filter((note) => note.id !== id);
+				setNotes(notesDeleted);
 				break;
 			default:
 				console.log(`Unregonized action: ${message.action}.`);
@@ -82,6 +95,7 @@ const Notes = (props: Props) => {
 						<div className="card" style={{"width": "calc(100% - 12px)"}}>
 							<div className="header" style={{ "textAlign": "left" }}>
 								<Moment format="YYYY-MM-DD HH:mm" date={note.modified} /> <label>{note.modifier.name}</label>
+								<button style={{"float": "right", "padding": "8px"}} className="btn-red" onClick={() => removeNote(ws, note.id)}>Delete</button>
 							</div>
 							<div className="content">
 								<span style={{"whiteSpace": "pre-wrap"}}>{note.content}</span>

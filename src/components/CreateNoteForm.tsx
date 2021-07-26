@@ -22,7 +22,7 @@ const CreateNoteForm: React.FC<CreateNoteFormProps> = (props) => {
 		setContent(event.target.value);
 	}
 
-	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (props.ws) {
 			props.ws.send(JSON.stringify({ "token": props.token, "action": "CREATE_NOTE", "content": content }))
@@ -37,7 +37,7 @@ const CreateNoteForm: React.FC<CreateNoteFormProps> = (props) => {
 			<table>
 				<tr>
 					<td><label>Create new note:</label></td>
-					<td><textarea onChange={onChange}>{content}</textarea></td>
+					<td><textarea value={content} onChange={e => onChange(e)} /></td>
 				</tr>
 				<tr>
 					<td colSpan={2} >
