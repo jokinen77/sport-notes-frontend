@@ -1,0 +1,64 @@
+.global-navbar {
+	box-shadow: 0 3px 3px 0px rgba(0,0,0,.3), 0 5px 5px 0px rgba(0,0,0,.3);
+	background-color: #333;
+	padding: 5px;
+	/*border-bottom: 1px solid white;*/
+	display: block;
+	top: 0px;
+	position: fixed;
+	z-index: 1;
+	width: calc(100% - 10px);
+	height: 44px;
+  }
+  
+  .navbar {
+	box-shadow: 0 3px 3px 0px rgba(0,0,0,.3), 0 5px 5px 0px rgba(0,0,0,.3);
+	background-color: #333;
+	padding: 5px;
+	/*border-bottom: 1px solid white;*/
+	display: block;
+	position: relative;
+	width: calc(100% - 10px);
+	height: 44px;
+  }
+  
+  .global-navbar ul, .navbar ul {
+	list-style-type: none;
+	padding: 0;
+	overflow: unset;
+	display: flow-root;
+	height: 100%;
+  }
+  
+  .global-navbar .item-left, .navbar .item-left {
+	float: left;
+  }
+  
+  .global-navbar li, .navbar li {
+	display: inline;
+  }
+  
+  .global-navbar .item-right, .navbar .item-right {
+	float: right;
+  }
+  
+  .global-navbar label, .navbar label {
+	display: block;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	padding: 8px;
+	font-size: 18px;
+	margin: 2px;
+	cursor: pointer;
+  }
+
+  .global-navbar a, .navbar a {
+	display: block;
+	text-decoration: none;
+  }
+  
+  .global-navbar .btn-nav:hover, .navbar .btn-nav:hover {
+	background-color: #111;
+  }
+  

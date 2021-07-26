@@ -1,0 +1,33 @@
+.card {
+	box-shadow: 0 8px 8px 0 rgba(0, 0, 0, .3), 0 6px 6px 0 rgba(0, 0, 0, .3);
+	border-radius: 4px;
+	display: inline-block;
+	margin: 8px;
+	/* resize: both; */
+	overflow: hidden;
+	background-color: white;
+	vertical-align: top;
+  }
+  
+  .card .header {
+	padding: 4px 8px;
+	background-color: #333;
+	color: white;
+	border-radius: 4px 4px 0px 0px;
+	text-align: center;
+	display: block;
+	width: calc(100% - 16px);
+  }
+  
+  .card .header * {
+	margin: auto;
+	padding: 10px;
+  }
+  
+  .card .content {
+	padding: 10px;
+	overflow: auto;
+	display: block;
+	height: calc(100% - 90px);
+  }
+  
